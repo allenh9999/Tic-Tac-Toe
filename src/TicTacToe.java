@@ -1,20 +1,43 @@
+//Don't you guys love uncommented code!
+//java.awt is for graphics
+//basically, each of these awt libraries imports something graphical
+//this is the class for a line
 import java.awt.BasicStroke;
+//class for different colors
 import java.awt.Color;
+//class for importing different fonts/making different font
 import java.awt.Font;
+//makes a canvas
 import java.awt.Graphics;
+//helps make the canvas
 import java.awt.Graphics2D;
+//allows for the mouse to be interacted with the code
 import java.awt.event.MouseEvent;
+//allows for the canvas to use the mouse
 import java.awt.event.MouseListener;
+//allows for the creation of ellipses
 import java.awt.geom.Ellipse2D;
+//makes new lines
 import java.awt.geom.Line2D;
+//creates the round rectangle for the buttons
 import java.awt.geom.RoundRectangle2D;
+//these util functions import different classes
+//ArrayList is a dynamically allocated array
 import java.util.ArrayList;
+//Random is basically creating random numbers
+//seeded with time (so this way it'll always be different)
 import java.util.Random;
-
+//importing the classes that I will override
+//JComponent is the class that is used in the JFrame
+//to make the canvas
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-
+// Class for making the entire program in
 public class TicTacToe {
+	//main function
+	/* Basically, this function makes a frame
+	 * Then makes sure that the frame works correctly
+	 */
 	public static void main(String[] args) {
 		JFrame frame = new TicTacToeJFrame();
 		frame.setSize(320,400);
@@ -23,19 +46,24 @@ public class TicTacToe {
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
-	
+	//An enumerator is basically like a new type of basic character
+	//in this case, the enumerator can only have 4 states:
+	//BLANK: there is nothing in the square
+	//X: there is an X in the square/X won
+	//O: there is an O in the square/O won
+	//TIE: the game is a tie
 	public enum Players {BLANK, X, O, TIE}
-	
+	//Where the computer stores the game board currently going on
 	public static Players[][] gameBoard = new Players[3][3];
-	
+	//Threads the random generator with a new seed
 	public static Random generator = new Random(System.currentTimeMillis());
-	
+	//makes a new component for graphics
 	static TicTacToeJComponent component = new TicTacToeJComponent();
-	
+	//makes the frame that the tic-tac-toe program is in
 	static class TicTacToeJFrame extends JFrame implements MouseListener {
-		
+		//the location of where the JFrame will be stored
 		private static final long serialVersionUID = 1L;
-
+		//initializes the JFrame and the game board
 		public TicTacToeJFrame() {
 			addMouseListener(this);
 			this.add(component);
@@ -46,35 +74,35 @@ public class TicTacToe {
 			}
 			this.repaint();
 		}
-		
+		//what happens when the mouse is clicked
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
 			
 		}
-
+		//what happens when the mouse enters the page
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
 			
 		}
-
+		//what happens when the mouse exits the page
 		@Override
 		public void mouseExited(MouseEvent arg0) {
 			
 		}
-
+		//what happens when the mouse is pressed
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			component.mousePressed(arg0.getX(), arg0.getY());
 		}
-
+		//what happens when the mouse is released
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
 			
 		}
 	}
-	
+	//creating all of the actual graphics of the game
 	static class TicTacToeJComponent extends JComponent {
-
+		//adds a default location of the JComponent
 		private static final long serialVersionUID = 1L;
 		
 		public int screen = 0;
